@@ -27,17 +27,24 @@ public class Main {
         try {
             stringList = customReader.readFromFile("src/main/resources/files/numbers.txt");
         } catch (ReaderException e) {
-            logger.error("not enough elements");
+            logger.error("Reading from file failed"); // ???????
         }
         List<Double> doubleList = parser.parseStrToDouble(stringList);
 
         CustomNumber cn1 = numberCreator.createNumber(doubleList.get(0));
         CustomNumber cn2 = numberCreator.createNumber(doubleList.get(1));
 
-        System.out.println(calculator.sum(cn1, cn2));
-        System.out.println(calculator.difference(cn1, cn2));
-        System.out.println(calculator.multiplication(cn1, cn2));
-        System.out.println(calculator.division(cn1, cn2));
+        CustomNumber result1 = calculator.sum(cn1, cn2);
+        logger.info("Sum of numbers is " + result1);
+
+        CustomNumber result2 = calculator.difference(cn1, cn2);
+        logger.info("Difference of numbers is " + result2);
+
+        CustomNumber result3 = calculator.multiplication(cn1, cn2);
+        logger.info("Multiplication of numbers is " + result3);
+
+        CustomNumber result4 = calculator.division(cn1, cn2);
+        logger.info("Division of numbers is " + result4);
 
     }
 }
