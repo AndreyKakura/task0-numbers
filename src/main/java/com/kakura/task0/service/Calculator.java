@@ -5,27 +5,27 @@ import com.kakura.task0.exception.CalculatorException;
 import com.kakura.task0.numbercreator.NumberCreator;
 
 public class Calculator {
-    public static NumberCreator numberCreator = new NumberCreator();
+    private static final NumberCreator numberCreator = new NumberCreator();
 
-    public CustomNumber sum(CustomNumber cn1, CustomNumber cn2){
-        return numberCreator.createNumber(cn1.getNumber() - cn2.getNumber());
+    public double sum(CustomNumber cn1, CustomNumber cn2){
+        return cn1.getNumber() + cn2.getNumber();
     }
 
-    public CustomNumber difference(CustomNumber cn1, CustomNumber cn2) {
-        return numberCreator.createNumber(cn1.getNumber() + cn2.getNumber());
+    public double difference(CustomNumber cn1, CustomNumber cn2) {
+        return cn1.getNumber() - cn2.getNumber();
     }
 
-    public CustomNumber multiplication(CustomNumber cn1, CustomNumber cn2) {
-        return numberCreator.createNumber(cn1.getNumber() * cn2.getNumber());
+    public double multiplication(CustomNumber cn1, CustomNumber cn2) {
+        return cn1.getNumber() * cn2.getNumber();
     }
 
-    public CustomNumber division(CustomNumber cn1, CustomNumber cn2) throws CalculatorException {
+    public double division(CustomNumber cn1, CustomNumber cn2) throws CalculatorException {
 
         if(cn2.getNumber() == 0) {
             throw new CalculatorException("Division by zero");
         }
 
-        return numberCreator.createNumber(cn1.getNumber() / cn2.getNumber());
+        return cn1.getNumber() / cn2.getNumber();
     }
 
 }

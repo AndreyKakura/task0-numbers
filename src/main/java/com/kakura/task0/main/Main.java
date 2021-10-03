@@ -37,16 +37,16 @@ public class Main {
         CustomNumber cn1 = numberCreator.createNumber(doubleList.get(0));
         CustomNumber cn2 = numberCreator.createNumber(doubleList.get(1));
 
-        CustomNumber result1 = calculator.sum(cn1, cn2);
+        double result1 = calculator.sum(cn1, cn2);
         logger.info("Sum of numbers is " + result1);
 
-        CustomNumber result2 = calculator.difference(cn1, cn2);
+        double result2 = calculator.difference(cn1, cn2);
         logger.info("Difference of numbers is " + result2);
 
-        CustomNumber result3 = calculator.multiplication(cn1, cn2);
+        double result3 = calculator.multiplication(cn1, cn2);
         logger.info("Multiplication of numbers is " + result3);
 
-        CustomNumber result4;
+        double result4;
         try {
             result4 = calculator.division(cn1, cn2);
         } catch (CalculatorException e) {
