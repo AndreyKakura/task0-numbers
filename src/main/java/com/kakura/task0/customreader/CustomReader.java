@@ -21,7 +21,7 @@ public class CustomReader {
                 stringList.add(tmp);
             }
         } catch (FileNotFoundException e) {
-            throw new ReaderException("Invalid pass ", e);
+            throw new ReaderException("File not found ", e);
         } catch (IOException e) {
             throw new ReaderException(e); // ???????
         }

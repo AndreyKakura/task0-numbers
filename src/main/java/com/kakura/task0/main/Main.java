@@ -17,19 +17,21 @@ public class Main {
 
     static Logger logger = LogManager.getLogger();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CalculatorException, ReaderException {
 
         CustomReader customReader = new CustomReader();
         Parser parser = new Parser();
         NumberCreator numberCreator = new NumberCreator();
         Calculator calculator = new Calculator();
 
-        List<String> stringList = null;
+        List<String> stringList;
         try {
             stringList = customReader.readFromFile("src/main/resources/files/numbers.txt");
         } catch (ReaderException e) {
-            logger.error("Reading from file failed"); // ???????
+            logger.error(e.getMessage());
+            throw e;
         }
+
         List<Double> doubleList = parser.parseStrToDouble(stringList);
 
         CustomNumber cn1 = numberCreator.createNumber(doubleList.get(0));
@@ -44,12 +46,14 @@ public class Main {
         CustomNumber result3 = calculator.multiplication(cn1, cn2);
         logger.info("Multiplication of numbers is " + result3);
 
-        CustomNumber result4 = null;
+        CustomNumber result4;
         try {
             result4 = calculator.division(cn1, cn2);
         } catch (CalculatorException e) {
-            logger.error("Division by zero");
+            logger.error(e.getMessage());
+            throw e;
         }
+
         logger.info("Division of numbers is " + result4);
 
     }
