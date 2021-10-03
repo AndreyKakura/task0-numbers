@@ -2,6 +2,7 @@ package com.kakura.task0.main;
 
 import com.kakura.task0.customnumber.CustomNumber;
 import com.kakura.task0.customreader.CustomReader;
+import com.kakura.task0.exception.CalculatorException;
 import com.kakura.task0.exception.ReaderException;
 import com.kakura.task0.numbercreator.NumberCreator;
 import com.kakura.task0.parser.Parser;
@@ -43,7 +44,12 @@ public class Main {
         CustomNumber result3 = calculator.multiplication(cn1, cn2);
         logger.info("Multiplication of numbers is " + result3);
 
-        CustomNumber result4 = calculator.division(cn1, cn2);
+        CustomNumber result4 = null;
+        try {
+            result4 = calculator.division(cn1, cn2);
+        } catch (CalculatorException e) {
+            logger.error("Division by zero");
+        }
         logger.info("Division of numbers is " + result4);
 
     }
