@@ -3,6 +3,7 @@ package com.kakura.task0.main;
 import com.kakura.task0.customnumber.CustomNumber;
 import com.kakura.task0.customreader.CustomReader;
 import com.kakura.task0.exception.CalculatorException;
+import com.kakura.task0.exception.ParserException;
 import com.kakura.task0.exception.ReaderException;
 import com.kakura.task0.numbercreator.NumberCreator;
 import com.kakura.task0.parser.Parser;
@@ -17,7 +18,7 @@ public class Main {
 
     static Logger logger = LogManager.getLogger();
 
-    public static void main(String[] args) throws CalculatorException, ReaderException {
+    public static void main(String[] args) throws CalculatorException, ReaderException, ParserException {
 
         CustomReader customReader = new CustomReader();
         Parser parser = new Parser();
@@ -32,7 +33,14 @@ public class Main {
             throw e;
         }
 
-        List<Double> doubleList = parser.parseStrToDouble(stringList);
+        List<Double> doubleList;
+
+        try {
+            doubleList = parser.parseStrToDouble(stringList);
+        } catch (ParserException e) {
+            logger.error(e.getMessage());
+            throw e;
+        }
 
         CustomNumber cn1 = numberCreator.createNumber(doubleList.get(0));
         CustomNumber cn2 = numberCreator.createNumber(doubleList.get(1));
